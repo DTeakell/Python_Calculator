@@ -8,17 +8,41 @@ import time
 import math
 import os
 
-# Get name of user to make it more personal
-def get_user_name():
-    userName = input("Please enter your name: ")
+# First time setup
+def setup():
+
+    # Create a file to hold setup information
+    setup_file = open('calculator_setup.txt', 'w')
+    
+    #Get user name
+    user_name = input("Please enter your name: ")
+
     time.sleep(0.5)
-    return userName
+
+    print("\nHi, " + user_name + "!\n")
+
+    # Write user name to the file
+    setup_file.write(user_name)
+    setup_file.close()
+
 
 # Print welcome message to greet the user
-def welcome_message(user_name):
-    print("\nHello, " + user_name + ".\n")
-    time.sleep(0.5)
-    print("Welcome to Python Calculator.\n")
+def welcome():
+    # Open file containing the user name
+    try:
+        name_file = open('calculator_setup.txt', 'r')
+        print("Welcome back, " + name_file.read() + "!\n")
+        time.sleep(0.5)
+        name_file.close()
+
+    except FileNotFoundError:
+        input("Welcome to Calculator. Please press 'Enter' to start setup.")
+        print("\nCreating File. Please wait. \n")
+        time.sleep(2)
+        print("File created successfully! Launching program. \n")
+        time.sleep(1.5)
+        setup()
+
 
 # Prints the main menu of the calculator
 def show_menu():
@@ -147,11 +171,9 @@ def exit_program():
 
 def main():
 
-    print("\nPython Calculator v1.0 \n \n")
+    print("\nPython Calculator v1.0 \n")
 
-    name = get_user_name()
-
-    welcome_message(name)
+    welcome()
 
     show_menu()
 
