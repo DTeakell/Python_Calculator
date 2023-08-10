@@ -25,7 +25,6 @@ def setup():
     setup_file.write(user_name)
     setup_file.close()
 
-
 # Print welcome message to greet the user
 def welcome():
     # Open file containing the user name
@@ -42,7 +41,6 @@ def welcome():
         print("File created successfully! Launching program. \n")
         time.sleep(1.5)
         setup()
-
 
 # Prints the main menu of the calculator
 def show_menu():
@@ -161,6 +159,8 @@ def exit_program():
         time.sleep(0.5)
         exit()
     elif choice == 'n':
+        os.system('cls' if os.name == 'nt' else 'clear')
+        time.sleep(0.5)
         show_menu()
         get_user_choice()
     else:
