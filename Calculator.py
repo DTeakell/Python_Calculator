@@ -14,10 +14,15 @@ def setup():
     # Create a file to hold setup information
     setup_file = open('calculator_setup.txt', 'w')
     
+    # Print welcome message
+    print("Welcome to Python Calculator!\n")
+
     #Get user name
     user_name = input("Please enter your name: ")
 
     time.sleep(0.5)
+
+    os.system('cls' if os.name == 'nt' else 'clear')
 
     print("\nHi, " + user_name + "!\n")
 
@@ -36,11 +41,12 @@ def welcome():
         name_file.close()
 
     except FileNotFoundError:
-        input("Welcome to Calculator. Please press 'Enter' to start setup.")
+        input("Setup file not found. Please press 'Enter' to start setup.")
         print("\nCreating File. Please wait. \n")
         time.sleep(2)
         print("File created successfully! Launching program. \n")
         time.sleep(1.5)
+        os.system('cls' if os.name == 'nt' else 'clear')
         setup()
 
 
