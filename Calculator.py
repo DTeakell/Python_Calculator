@@ -199,8 +199,9 @@ def get_settings_choice():
         delete_setup()
 
     elif settings_choice == 3:
-        print("\nPlease wait...\n")
+        print("\nReturning to main menu")
         time.sleep(0.5)
+        exit_settings()
 
     else:
         print("\nERROR: Invalid choice. Please try again.\n")
@@ -221,7 +222,8 @@ def edit_setup():
     time.sleep(0.5)
     show_menu()
 
-def delete_setup():
+def delete_setup(): 
+
     choice = input("\nWithout the setup file, the program will have to be restarted.\n\nAre you sure you want to delete? (y/n): ")
     if choice == 'y':
         print("\nDeleting setup file...\n")
@@ -233,6 +235,7 @@ def delete_setup():
         os.system('cls' if os.name == 'nt' else 'clear')
         time.sleep(2)
         main()
+        
     elif choice == 'n':
         os.system('cls' if os.name == 'nt' else 'clear')
         time.sleep(0.5)
@@ -243,6 +246,10 @@ def delete_setup():
         print("\nERROR: Invalid input. Please try again.\n")
         time.sleep(0.5)
         delete_setup()
+
+def exit_settings():
+    os.system('cls' if os.name == 'nt' else 'clear')
+    show_menu()
 
 
 
