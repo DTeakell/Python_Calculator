@@ -218,6 +218,7 @@ def edit_setup():
     
     setup_file.write(user_name)
     setup_file.close()
+    print("\nYour file has been saved.\n")
 
     time.sleep(0.5)
     show_menu()
