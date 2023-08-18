@@ -222,7 +222,7 @@ def edit_setup():
     show_menu()
 
 def delete_setup():
-    choice = input("\nWithout the setup file, the program will not function properly.\nAre you sure you want to delete? (y/n): ")
+    choice = input("\nWithout the setup file, the program will have to be restarted.\n\nAre you sure you want to delete? (y/n): ")
     if choice == 'y':
         print("\nDeleting setup file...\n")
         os.remove("calculator_setup.txt")
@@ -233,7 +233,16 @@ def delete_setup():
         os.system('cls' if os.name == 'nt' else 'clear')
         time.sleep(2)
         main()
-
+    elif choice == 'n':
+        os.system('cls' if os.name == 'nt' else 'clear')
+        time.sleep(0.5)
+        show_menu()
+        get_menu_choice()
+    
+    else:
+        print("\nERROR: Invalid input. Please try again.\n")
+        time.sleep(0.5)
+        delete_setup()
 
 
 
