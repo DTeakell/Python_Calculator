@@ -31,8 +31,6 @@ def setup():
     setup_file_1.write(user_name)
     setup_file_1.close()
 
-    setup_file_2 = open('history.txt', 'w')
-
 # Welcome Message 
 def welcome():
     # Open file containing the user name
@@ -43,8 +41,8 @@ def welcome():
         name_file.close()
 
     except FileNotFoundError:
-        input("Setup files not found. Please press 'Enter' to start setup.")
-        print("\nCreating File. Please wait. \n")
+        input("Setup file not found. Please press 'Enter' to start setup.")
+        print("\nCreating file. Please wait. \n")
         time.sleep(2)
         print("File created successfully! Launching program. \n")
         time.sleep(1.5)
@@ -93,7 +91,7 @@ def get_menu_choice():
         division()
 
     elif user_choice == 5:
-        print("\nPlease wait...")
+        print("\nPlease wait...\n")
         time.sleep(1)
         show_settings()
     
@@ -177,7 +175,7 @@ def division():
 def show_settings():
     os.system("cls" if os.name == 'nt' else "clear")
     print("\nSettings\n")
-    print("1.) Edit setup file \n2.) Delete setup file \n3.) Delete history file \n4.) Exit\n")
+    print("1.) Edit setup file \n2.) Delete setup file \n3.) Exit\n")
     get_settings_choice()
 
 def get_settings_choice():
@@ -191,20 +189,17 @@ def get_settings_choice():
         pass
 
     if settings_choice == 1:
-        print("Please wait...\n")
+        print("\nPlease wait...\n")
         time.sleep(0.5)
         edit_setup()
     
     elif settings_choice == 2:
-        print("Please wait...")
+        print("\nPlease wait...\n")
         time.sleep(0.5)
+        delete_setup()
 
     elif settings_choice == 3:
-        print("Please wait...")
-        time.sleep(0.5)
-
-    elif settings_choice == 4:
-        print("Please wait...")
+        print("\nPlease wait...\n")
         time.sleep(0.5)
 
     else:
@@ -215,14 +210,29 @@ def edit_setup():
     time.sleep(1)
     setup_file = open("calculator_setup.txt", 'w')
     user_name = input("Please enter a new name: ")
-    
+
+    os.system('cls' if os.name == 'nt' else 'clear')
     setup_file.write(user_name)
     setup_file.close()
-    print("\nYour file has been saved.\n")
 
+    print("\n\nYour file has been saved. Returning to menu.\n")
+    time.sleep(1)
+    os.system('cls' if os.name == 'nt' else 'clear')
     time.sleep(0.5)
     show_menu()
 
+def delete_setup():
+    choice = input("\nWithout the setup file, the program will not function properly.\nAre you sure you want to delete? (y/n): ")
+    if choice == 'y':
+        print("\nDeleting setup file...\n")
+        os.remove("calculator_setup.txt")
+        os.system('cls' if os.name == 'nt' else 'clear')
+
+        time.sleep(1)
+        choice = input("Setup file has been removed succesfully.\n\nPress 'Enter' to restart application.")
+        os.system('cls' if os.name == 'nt' else 'clear')
+        time.sleep(2)
+        main()
 
 
 
